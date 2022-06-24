@@ -1,0 +1,11 @@
+# Environments 
+*venv
+*env
+
+# Django Dependencies
+__pycache__/
+media/
+
+# Database
+data/
+*.sqlite3
