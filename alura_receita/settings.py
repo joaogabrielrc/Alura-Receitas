@@ -3,17 +3,16 @@ import os
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-SECRET_KEY = os.environ.get('SECRET_KEY', 'django-secret-key')
+SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY')
 
-DEBUG = os.environ.get('DEBUG', '1') == '1'
+DEBUG = os.environ.get('DEBUG') == '1'
 
-ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS', '127.0.0.1, localhost').split(', ')
+ALLOWED_HOSTS = os.environ.get('DJANGO_ALLOWED_HOSTS').split(', ')
 
 
 # Application definition
 
-INSTALLED_APPS = [
-    # Django apps
+INSTALLED_APPS = [    
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -21,9 +20,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
-    # Local apps
-    'recipes',
-    'people'
+    'receitas'    
 ]
 
 MIDDLEWARE = [
@@ -41,7 +38,9 @@ ROOT_URLCONF = 'alura_receita.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'receitas/templates')],
+        'DIRS': [
+          os.path.join(BASE_DIR, 'receitas/templates')
+        ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -87,7 +86,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 # Internationalization
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'pt-br'
 
 TIME_ZONE = 'America/Sao_Paulo'
 
@@ -99,12 +98,12 @@ USE_TZ = True
 
 
 # Static files (CSS, JavaScript, Images)
-
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'alura_receita/static')
+  os.path.join(BASE_DIR, 'alura_receita/static')
 ]
 
+# Media files
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
