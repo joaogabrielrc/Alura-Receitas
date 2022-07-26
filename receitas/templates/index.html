@@ -1,196 +1,49 @@
+{% extends 'base.html' %}
 {% load static %}
 
-<!DOCTYPE html>
-<html lang="pt-br">
+{% block content %}
+<div id="preloader">
+  <i class="circle-preloader"></i>
+  <img src="{% static 'img/core-img/pizza.png' %}" />
+</div>
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="description" content="">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>Alura Receitas</title>
-  <link rel="icon" href="{% static 'img/core-img/favicon.ico' %}">
-  <link rel="stylesheet" href="{% static 'site.css' %}">
-</head>
+<div class="search-wrapper">
+  <div class="close-btn"><i class="fa fa-times" aria-hidden="true"></i></div>
 
-<body>
-  <div id="preloader">
-    <i class="circle-preloader"></i>
-    <img src="{% static 'img/core-img/pizza.png' %}" />
-  </div>
-
-  <div class="search-wrapper">
-    <div class="close-btn"><i class="fa fa-times" aria-hidden="true"></i></div>
-
-    <div class="container">
-      <div class="row">
-        <div class="col-12">
-          <form action="#" method="post">
-            <input type="search" name="search" placeholder="O que está procurando...">
-            <button type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
-          </form>
-        </div>
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <form action="#" method="post">
+          <input type="search" name="search" placeholder="O que está procurando...">
+          <button type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
+        </form>
       </div>
     </div>
   </div>
+</div>
 
-  <header class="header-area">
+{% include 'partials/header.html' %}
 
-    <div class="top-header-area">
-      <div class="container h-100">
-        <div class="row h-100 align-items-center justify-content-between">
-          <div class="col-12 col-sm-6">
-            <div class="breaking-news">
-              <div id="breakingNewsTicker" class="ticker">
-                <ul>
-                  <li><a href="">Boas vindas!</a></li>
-                  <li><a href="">As melhores receitas</a></li>
-                  <li><a href="">Você encontra aqui!</a></li>
-                </ul>
-              </div>
-            </div>
-          </div>
+<section class="best-receipe-area">
+  <div class="container">
+    <div class="row">
 
-          <div class="col-12 col-sm-6">
-            <div class="top-social-info text-right">
-              <a href=""><i class="fa fa-facebook" aria-hidden="true"></i></a>
-              <a href=""><i class="fa fa-twitter" aria-hidden="true"></i></a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="delicious-main-menu">
-      <div class="classy-nav-container breakpoint-off">
-        <div class="container">
-          <nav class="classy-navbar justify-content-between" id="deliciousNav">
-
-            <a class="nav-brand" href="{% url 'index' %}">
-              <img src="{% static 'img/core-img/logo.png' %}" />
+      {% for object in list  %}
+      <div class="col-12 col-sm-6 col-lg-4">
+        <div class="single-best-receipe-area mb-30">
+          <img src="{% static 'img/bg-img/foto_receita.png' %}">
+          <div class="receipe-content">
+            <a href="{% url 'recipe' %}">
+              <h5>{{ object.name }}</h5>
             </a>
-
-            <div class="classy-navbar-toggler">
-              <span class="navbarToggler"><span></span><span></span><span></span></span>
-            </div>
-
-            <div class="classy-menu">
-
-              <div class="classycloseIcon">
-                <div class="cross-wrap"><span class="top"></span><span class="bottom"></span></div>
-              </div>
-
-              <div class="classynav">
-                <ul>
-                  <li><a href="{% url 'index' %}">Home</a></li>
-                  <li><a href="{% url 'recipe' %}">Receitas</a></li>
-                </ul>
-
-                <div class="search-btn">
-                  <i class="fa fa-search" aria-hidden="true"></i>
-                </div>
-
-              </div>
-            </div>
-          </nav>
-        </div>
-      </div>
-    </div>
-  </header>
-
-  <section class="best-receipe-area">
-    <div class="container">
-      <div class="row">
-        <div class="col-12 col-sm-6 col-lg-4">
-          <div class="single-best-receipe-area mb-30">
-            <img src="{% static 'img/bg-img/foto_receita.png' %}">
-            <div class="receipe-content">
-              <a href="{% url 'recipe' %}">
-                <h5>Nome da receita</h5>
-              </a>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-12 col-sm-6 col-lg-4">
-          <div class="single-best-receipe-area mb-30">
-            <img src="{% static 'img/bg-img/foto_receita.png' %}">
-            <div class="receipe-content">
-              <a href="{% url 'recipe' %}">
-                <h5>Nome da receita</h5>
-              </a>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-12 col-sm-6 col-lg-4">
-          <div class="single-best-receipe-area mb-30">
-            <img src="{% static 'img/bg-img/foto_receita.png' %}">
-            <div class="receipe-content">
-              <a href="{% url 'recipe' %}">
-                <h5>Nome da receita</h5>
-              </a>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-12 col-sm-6 col-lg-4">
-          <div class="single-best-receipe-area mb-30">
-            <img src="{% static 'img/bg-img/foto_receita.png' %}">
-            <div class="receipe-content">
-              <a href="{% url 'recipe' %}">
-                <h5>Nome da receita</h5>
-              </a>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-12 col-sm-6 col-lg-4">
-          <div class="single-best-receipe-area mb-30">
-            <img src="{% static 'img/bg-img/foto_receita.png' %}">
-            <div class="receipe-content">
-              <a href="{% url 'recipe' %}">
-                <h5>Nome da receita</h5>
-              </a>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-12 col-sm-6 col-lg-4">
-          <div class="single-best-receipe-area mb-30">
-            <img src="{% static 'img/bg-img/foto_receita.png' %}">
-            <div class="receipe-content">
-              <a href="{% url 'recipe' %}">
-                <h5>Nome da receita</h5>
-              </a>
-            </div>
           </div>
         </div>
       </div>
+      {% endfor %}
+
     </div>
-  </section>
+  </div>
+</section>
 
-  <footer class="footer-area">
-    <div class="container h-100">
-      <div class="row h-100">
-        <div class="col-12 h-100 d-flex flex-wrap align-items-center justify-content-between">
-          <div class="footer-social-info text-right">
-            <a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a>
-            <a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a>
-          </div>
-          <div class="footer-logo">
-            <a href="{% url 'index' %}"><img src="{% static 'img/core-img/logo.png' %}"></a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </footer>
-
-  <script src="{% static 'js/jquery/jquery-2.2.4.min.js' %}"></script>
-  <script src="{% static 'js/bootstrap/popper.min.js' %}"></script>
-  <script src="{% static 'js/bootstrap/bootstrap.min.js' %}"></script>
-  <script src="{% static 'js/plugins/plugins.js' %}"></script>
-  <script src="{% static 'js/active.js' %}"></script>
-</body>
-
-</html>
+{% include 'partials/footer.html' %}
+{% endblock %}
