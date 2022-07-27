@@ -4,13 +4,10 @@ from receitas.models import Recipe
 
 
 def index_view(request):
+  query = request.GET.get('q')    
   recipe_queryset = Recipe.objects.filter(is_active=True).order_by('-created_at')
-
-  for x in recipe_queryset:
-    print()
-    print(x.image.url)
-    print()
-
+  if query is not None:
+    recipe_queryset = Recipe.objects.filter(is_active=True, name__icontains=query).order_by('-created_at')
   context = {
     'recipes': recipe_queryset
   }
@@ -22,4 +19,4 @@ def recipe_view(request, pk=None):
   context = {
     'recipe': recipe_object
   }
-  return render(request, 'receita.html', context)
+  return render(request, 'recipe.html', context)
