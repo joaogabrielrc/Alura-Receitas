@@ -59,10 +59,14 @@ WSGI_APPLICATION = 'alura_receita.wsgi.application'
 # Database
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    }
+  'default': {
+      'ENGINE': os.environ.get('SQL_ENGINE', 'django.db.backends.sqlite3'),
+      'NAME': os.environ.get('SQL_DATABASE', os.path.join(BASE_DIR, 'db.sqlite3')),
+      'USER': os.environ.get('SQL_USER', 'myuser'),
+      'PASSWORD': os.environ.get('SQL_PASSWORD', 'mypassword'),
+      'HOST': os.environ.get('SQL_HOST', 'localhost'),
+      'PORT': os.environ.get('SQL_PORT', '5432'),
+  }
 }
 
 
@@ -86,7 +90,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 # Internationalization
 
-LANGUAGE_CODE = 'pt-br'
+LANGUAGE_CODE = 'en-us'
 
 TIME_ZONE = 'America/Sao_Paulo'
 
