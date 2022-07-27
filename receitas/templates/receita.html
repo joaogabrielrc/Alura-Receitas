@@ -47,7 +47,14 @@
   <div class="row">
     <div class="col-12">
       <div class="receipe-slider owl-carousel">
-        <img src="{% static 'img/bg-img/tomate_banner.jpg' %}">
+        <img 
+          src="{{ recipe.image.url }}" 
+          style="
+          max-height: 300px;
+          width: auto;
+          margin: auto;
+          border-radius: 10px;"
+        />
       </div>
     </div>
   </div>
@@ -65,7 +72,9 @@
             <h6>Preparo: {{ recipe.preparation_time }}</h6>
             <h6>Rendimento: {{ recipe.potion }}</h6>
             <h6>Categoria: {{ recipe.category }}</h6>
-            <h6>Por: Pessoa</h6>
+            {% if recipe.owner %}
+            <h6>Por: {{ recipe.owner.username }}</h6>
+            {% endif %}
           </div>
         </div>
       </div>
