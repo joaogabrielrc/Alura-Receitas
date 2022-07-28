@@ -1,9 +1,6 @@
-import re
-
 from django.shortcuts import redirect, render
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
-
 
 
 def login_view(request):
@@ -30,22 +27,34 @@ def get_form_errors(form) -> list:
 
   return errors
 
+def register_user(form):
+  username = form.data.get('username')    
+  first_name = form.data.get('fname')        
+  last_name = form.data.get('lname')        
+  user = form.save()
+  user.email = username
+  user.first_name = first_name
+  user.last_name = last_name
+  user.is_staff = True    
+  user.save()        
+  return user
+
 
 @login_required
 def register_view(request):
-  context = {}
-  form = UserCreationForm(request.POST or None)  
-  if form.is_valid():    
-    username = request.POST.get('username')    
-    first_name = request.POST.get('fname')        
-    last_name = request.POST.get('lname')        
-    user = form.save()
-    user.email = username
-    user.first_name = first_name
-    user.last_name = last_name
-    user.is_staff = True    
-    user.save()
-    return redirect('/login/')
-  else:    
-    context['errors'] = get_form_errors(form)             
+  context = {}  
+  if request.method == 'POST':
+    credentials = {
+      'username': request.POST.get('username'),
+      'password1': request.POST.get('password1'),
+      'password2': request.POST.get('password2'),
+      'fname': request.POST.get('fname'),
+      'lname': request.POST.get('lname')     
+    }
+    form = UserCreationForm(credentials)  
+    if form.is_valid():            
+      register_user(form)                  
+      return redirect('/login/')
+    else:    
+      context['errors'] = get_form_errors(form)             
   return render(request, 'pages/register.html', context)
