@@ -18,11 +18,19 @@
       {% if recipes %}
       {% for recipe in recipes %}
       <div class="col-12 col-sm-6 col-lg-4">
-        <div class="single-best-receipe-area mb-30">
-          <img src="{{ recipe.image.url }}">
+        <div class="single-best-receipe-area mb-30 text-center">
+          <img src="{{ recipe.image.url }}" style="max-height: 250px; width: auto;">
           <div class="receipe-content">
             <a href="{% url 'recipe' recipe.id %}">
-              <h5>{{ recipe.name }}</h5>
+              <h5>{{ recipe.name }}</h5>              
+              {% if recipe.owner == user and manager %}              
+              <a href="{% url 'edit_recipe' recipe.id %}" type="button" class="btn btn-sm btn-primary">
+                Editar
+              </a>
+              <a href="{% url 'delete_recipe' recipe.id %}" type="button" class="btn btn-sm btn-danger">
+                Deletar
+              </a>
+              {% endif %}
             </a>
           </div>
         </div>

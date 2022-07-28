@@ -8,10 +8,50 @@ from receitas.models import Recipe
 User = get_user_model()
 
 @login_required
-def recipe_view(request):  
-  recipe_queryset = Recipe.objects.filter(is_active=True, owner=request.user).order_by('-created_at')  
+def recipe_update_view(request, pk=None):
+  recipe = Recipe.objects.get(pk=pk)
   context = {
-    'recipes': recipe_queryset
+    'recipe': recipe
+  }
+
+  if request.method == 'POST':
+    recipe = Recipe.objects.get(pk=pk)
+    user = request.user
+    name = request.POST.get('name')
+    ingredients = request.POST.get('ingredients')
+    preparation = request.POST.get('preparation')
+    preparation_time = request.POST.get('preparation_time')
+    potion = request.POST.get('potion')
+    category = request.POST.get('category')    
+    image = request.FILES.get('image')
+
+    recipe.name = name
+    recipe.ingredients = ingredients        
+    recipe.preparation = preparation        
+    recipe.preparation_time = preparation_time        
+    recipe.potion = potion        
+    recipe.category = category    
+    if image:          
+      recipe.image = image    
+    recipe.save()
+    return redirect(f'/recipes/{recipe.id}/')
+
+  return render(request, 'pages/recipe-update.html', context)
+
+
+@login_required
+def recipe_delete_view(request, pk=None):
+  recipe = Recipe.objects.get(pk=pk)
+  recipe.delete()
+  return redirect('/recipes/')
+
+
+@login_required
+def recipe_view(request):  
+  recipe_queryset = Recipe.objects.filter(is_active=True, owner=request.user).order_by('-created_at')    
+  context = {
+    'recipes': recipe_queryset,
+    'manager': True
   }
   return render(request, 'pages/index.html', context)
 
