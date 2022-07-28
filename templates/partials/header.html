@@ -45,18 +45,25 @@
               <div class="cross-wrap"><span class="top"></span><span class="bottom"></span></div>
             </div>
 
+            {% if user.is_authenticated %}
             <div class="classynav">
               <ul>
                 <li><a href="{% url 'index' %}">Páginal Principal</a></li>
                 <li><a href="{% url 'register' %}">Cadastro</a></li>
-                <li><a href="{% url 'logout' %}">Logout</a></li>                
-              </ul>
-
+                <li><a href="{% url 'logout' %}">Sair</a></li>                
+              </ul>              
               <div class="search-btn">
                 <i class="fa fa-search" aria-hidden="true"></i>
-              </div>
-
+              </div>              
             </div>
+            {% else %}
+            <div class="classynav">
+              <ul>
+                <li><a href="{% url 'login' %}">Entrar</a></li>
+                <li><a href="{% url 'register' %}">Cadastro</a></li>                
+              </ul>                            
+            </div>
+            {% endif %}
           </div>
         </nav>
       </div>

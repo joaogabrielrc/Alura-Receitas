@@ -7,49 +7,7 @@
   <img src="{% static 'img/core-img/pizza.png' %}" alt="">
 </div>
 
-<header class="header-area">
-  <div class="top-header-area">
-    <div class="container h-100">
-      <div class="row h-100 align-items-center justify-content-between">
-        <div class="col-12 col-sm-6">
-          <div class="breaking-news">
-            <div id="breakingNewsTicker" class="ticker">
-              <ul>
-                <li><a href="">Boas vindas!</a></li>
-                <li><a href="">As melhores receitas</a></li>
-                <li><a href="">Você encontra aqui!</a></li>
-              </ul>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-12 col-sm-6">
-          <div class="top-social-info text-right">
-            <a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a>
-            <a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="delicious-main-menu">
-    <div class="classy-nav-container breakpoint-off">
-      <div class="container">
-        <nav class="classy-navbar justify-content-between" id="deliciousNav">
-
-          <a class="nav-brand" href="{% url 'index' %}">
-            <img src="{% static 'img/core-img/logo.png' %}" />
-          </a>
-
-          <div class="classy-navbar-toggler">
-            <span class="navbarToggler"><span></span><span></span><span></span></span>
-          </div>
-        </nav>
-      </div>
-    </div>
-  </div>
-</header>
+{% include 'partials/header.html' %}
 
 <div class="contact-area section-padding-0-80">
   <div class="container">
@@ -59,11 +17,11 @@
           <h2>Login</h2>
         </div>
       </div>
-    </div>
+    </div>    
     <div class="row">
       <div class="col-12">
         <div class="contact-form-area">
-          <form action="" method="POST">
+          <form action="{% url 'login' %}" method="POST">
             {% csrf_token %}
             <div class="row">
               <div class="col-12 col-lg-12">
@@ -76,6 +34,7 @@
                   placeholder="Digite o seu e-mail"
                   autocomplete="off"
                   autofocus
+                  required
                 />
               </div>
               <div class="col-12 col-lg-12">
@@ -86,6 +45,8 @@
                   id="senha" 
                   class="form-control" 
                   placeholder="Digite a sua senha"
+                  autocomplete="off"
+                  required
                 />
               </div>
               <div class="col-12 text-center mt-4">

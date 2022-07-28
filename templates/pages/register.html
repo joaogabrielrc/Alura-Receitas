@@ -7,8 +7,6 @@
   <img src="{% static 'img/core-img/pizza.png' %}" alt="">
 </div>
 
-{% include 'partials/search.html' %}
-
 {% include 'partials/header.html' %}
 
 <div class="contact-area section-padding-0-80">
@@ -20,17 +18,19 @@
         </div>
       </div>
     </div>
+
     {% if errors %}
     <div class="row">
       <div class="col-12">
         <ul class="text-danger mb-5">
-        {% for error in errors %}        
-          <li class="mb-2">- {{ error }}</li>        
-        {% endfor %}
+          {% for error in errors %}
+          <li class="mb-2">- {{ error }}</li>
+          {% endfor %}
         </ul>
       </div>
     </div>
     {% endif %}
+
     <div class="row">
       <div class="col-12">
         <div class="contact-form-area">
@@ -39,57 +39,27 @@
             <div class="row">
               <div class="col-12 col-lg-6">
                 <label for="first_name"><b>Nome</b></label>
-                <input 
-                  type="text" 
-                  name="fname"
-                  id="first_name"
-                  class="form-control" 
-                  placeholder="Ex.: João Gabriel"
-                  required
-                />
-              </div>              
+                <input type="text" name="fname" id="first_name" class="form-control" placeholder="Ex.: João Gabriel"
+                  required />
+              </div>
               <div class="col-12 col-lg-6">
                 <label for="last_name"><b>Sobrenome</b></label>
-                <input 
-                  type="text" 
-                  name="lname"
-                  id="last_name"
-                  class="form-control" 
-                  placeholder="Ex.: Rozete Cardoso"
-                />
+                <input type="text" name="lname" id="last_name" class="form-control" placeholder="Ex.: Rozete Cardoso" />
               </div>
               <div class="col-12 col-lg-12">
                 <label for="email"><b>E-mail</b></label>
-                <input 
-                  type="email" 
-                  name="username"
-                  id="email"
-                  class="form-control" 
-                  placeholder="Ex.: joaogabriel@exemplo.com"     
-                  required             
-                />
+                <input type="email" name="username" id="email" class="form-control"
+                  placeholder="Ex.: joaogabriel@exemplo.com" required />
               </div>
               <div class="col-12 col-lg-6">
                 <label for="id_password1"><b>Senha</b></label>
-                <input 
-                  type="password" 
-                  name="password1"
-                  id="id_password1"
-                  class="form-control" 
-                  placeholder="Digite uma senha"  
-                  required                 
-                />
+                <input type="password" name="password1" id="id_password1" class="form-control"
+                  placeholder="Digite uma senha" required />
               </div>
               <div class="col-12 col-lg-6">
                 <label for="id_password2"><b>Confirmação de senha</b></label>
-                <input 
-                  type="password" 
-                  name="password2"
-                  id="id_password2"
-                  class="form-control" 
-                  placeholder="Digite a senha novamente"
-                  required
-                />
+                <input type="password" name="password2" id="id_password2" class="form-control"
+                  placeholder="Digite a senha novamente" required />
               </div>
               <div class="col-12 text-center">
                 <button class="btn btn-success" type="submit">Criar sua conta</button>
