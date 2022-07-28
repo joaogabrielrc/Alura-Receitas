@@ -48,8 +48,9 @@
             {% if user.is_authenticated %}
             <div class="classynav">
               <ul>
-                <li><a href="{% url 'index' %}">Páginal Principal</a></li>
-                <li><a href="{% url 'register' %}">Cadastro</a></li>
+                <li><a href="{% url 'index' %}">Todas Receitas</a></li>
+                <li><a href="{% url 'recipes' %}">Minhas Receitas</a></li>
+                <li><a href="{% url 'recipe_create' %}">Criar Receita</a></li>
                 <li><a href="{% url 'logout' %}">Sair</a></li>                
               </ul>              
               <div class="search-btn">
